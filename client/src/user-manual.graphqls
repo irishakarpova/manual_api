@@ -1,0 +1,16 @@
+schema {
+  query: Query
+}
+
+type Query {
+    getList(): [Item]!
+    getItem(id:ID!): Item!
+}
+
+type Item {
+    id: ID!
+    title: String!
+    text: String
+    sort: String
+    parentId: ID
+}

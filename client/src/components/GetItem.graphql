@@ -1,0 +1,9 @@
+query GetItem($id: ID!) {
+	getItem(id: $id) {
+		id
+		title
+		text
+		sort
+		parentId
+	}
+}
