@@ -3,7 +3,6 @@ import { BrowserRouter as Router } from "react-router-dom"
 import { Link as RouterLink } from 'react-router-dom';
 import AppBar from '@material-ui/core/AppBar';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import Grid from '@material-ui/core/Grid';
 import TreeView from '@material-ui/lab/TreeView';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
@@ -174,9 +173,7 @@ function ResponsiveDrawer(props) {
         </Hidden>
         <Hidden xsDown implementation="css">
           <Drawer
-            classes={{
-              paper: classes.drawerPaper,
-            }}
+            classes={{ paper: classes.drawerPaper }}
             variant="permanent"
             open
           >
@@ -184,15 +181,9 @@ function ResponsiveDrawer(props) {
           </Drawer>
         </Hidden>
       </nav>
-      <Grid container>
-        <Grid item md={8}>
-          <main className={classes.content}>
-            <div className={classes.toolbar} />
-                <ResponsiveContent match={props.match} id={currentId}/>        
-          </main>
-        </Grid>
-      </Grid>
-  
+
+      <ResponsiveContent match={props.match} id={currentId}/>        
+
     </div>
 
   );
