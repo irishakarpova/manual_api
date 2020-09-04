@@ -7,7 +7,6 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import TreeItem from '@material-ui/lab/TreeItem';
 import Drawer from '@material-ui/core/Drawer';
 import Hidden from '@material-ui/core/Hidden';
-import ResponsiveContent from './item'
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import { gql, useQuery } from '@apollo/client';
 
@@ -51,7 +50,7 @@ function ResponsiveDrawer(props) {
   const classes = useStyles();
   const theme = useTheme();
 
-  const [currentId, setCurrentId] = React.useState(null)
+
   const [expanded, setExpanded] = React.useState([props.match.params.parent]);
   const [selected, setSelected] = React.useState([props.match.params.id]);
   const { loading, error, data } = useQuery(GET_LIST);
@@ -59,9 +58,7 @@ function ResponsiveDrawer(props) {
   if (loading) return 'Loading...';
   if (error) return `Error! ${error.message}`;
 
-  const handleClick = (id) => {
-    setCurrentId(id);
-  }
+
   const handleToggle = (event, nodeIds) => {
     setExpanded(nodeIds);
   };
@@ -96,7 +93,7 @@ function ResponsiveDrawer(props) {
                             <TreeItem key={subIndex}
                                       nodeId={subItem.id} 
                                       label={subItem.title} 
-                                      onClick={() => {handleClick(subItem.id)}}
+                                      onClick={() => {props.handleClick(subItem.id)}}
                                       />   
                           </RouterLink>  
                         </Router>    
@@ -113,8 +110,7 @@ function ResponsiveDrawer(props) {
   const container = window !== undefined ? () => window().document.body : undefined;
 
   return(
-    <React.Fragment>
-      <nav className={classes.drawer} aria-label="mailbox folders">
+    <nav className={classes.drawer} aria-label="mailbox folders">
         <Hidden smUp implementation="css">
           <Drawer
             container={container}
@@ -143,9 +139,7 @@ function ResponsiveDrawer(props) {
             {drawer}
           </Drawer>
         </Hidden>
-      </nav>
-      <ResponsiveContent match={props.match} id={currentId}/>        
-    </React.Fragment>
+      </nav>      
   );
 }
 

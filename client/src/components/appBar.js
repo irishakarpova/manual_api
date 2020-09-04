@@ -5,6 +5,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
+import Switch from '@material-ui/core/Switch';
 
 const drawerWidth = 300;
 const useStyles = makeStyles((theme) => ({
@@ -31,8 +32,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function ButtonAppBar(props) {
   const classes = useStyles();
-
-
+ 
   return (
     <div className={classes.root}>
       <AppBar elevation={0} position="fixed" className={classes.appBar}>
@@ -50,6 +50,13 @@ export default function ButtonAppBar(props) {
           <Typography variant="h6"  noWrap className={classes.title}>
             USER MANUAL
           </Typography>
+
+          <Switch
+       
+            onChange={props.chancheTheme}
+            name="checkedA"
+            inputProps={{ 'aria-label': 'secondary checkbox' }}
+          />
 
         </Toolbar>
       </AppBar>
