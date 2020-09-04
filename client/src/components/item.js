@@ -58,14 +58,14 @@ export default (props) => {
 					)}
 					{id ? (
 						<React.Fragment>
-							<Typography variant="h4" component="h3" gutterBottom>
+							<Typography variant="h4" gutterBottom >
 								{article.title}
 							</Typography>
-							<Typography paragraph gutterBottom>
+							<Typography paragraph gutterBottom>								
 								{htmlToReactParser.parse(article.text)}
 							</Typography>
 						</React.Fragment> 
-					): <p>Still no ID</p>} 
+					): <Typography variant="h4" gutterBottom >Wellcome</Typography>} 
 				</main>
 			</Grid>
 		</Grid>
