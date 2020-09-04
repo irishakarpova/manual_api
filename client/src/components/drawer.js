@@ -5,6 +5,7 @@ import TreeView from '@material-ui/lab/TreeView';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import TreeItem from '@material-ui/lab/TreeItem';
+import Typography from '@material-ui/core/Typography';
 import Drawer from '@material-ui/core/Drawer';
 import Hidden from '@material-ui/core/Hidden';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
@@ -69,7 +70,8 @@ function ResponsiveDrawer(props) {
 
   const drawer = (
     <React.Fragment>
-      <div className={classes.toolbar} />
+        <div className={classes.toolbar} >
+        </div>
         <TreeView
           defaultCollapseIcon={<ExpandMoreIcon />}
           defaultExpandIcon={<ChevronRightIcon />}
@@ -137,6 +139,7 @@ function ResponsiveDrawer(props) {
             open
           >
             {drawer}
+            
           </Drawer>
         </Hidden>
       </nav>      

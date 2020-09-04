@@ -43,7 +43,6 @@ export default (props) => {
 		loadData();
 	}
 	
-	const article = ( data && !loading ) ? data.getItem : <Skeleton />; 
 
 	return(
 		<Grid container>
@@ -59,15 +58,16 @@ export default (props) => {
 					{id ? (
 						<React.Fragment>
 							<Typography variant="h4" gutterBottom >
-								{article.title}
+								{data && !loading  ? data.getItem.title : <Skeleton />} 
 							</Typography>
 							<Typography paragraph gutterBottom>								
-								{htmlToReactParser.parse(article.text)}
+								{data && !loading  ? htmlToReactParser.parse(data.getItem.text) : <Skeleton />}
 							</Typography>
 						</React.Fragment> 
 					): <Typography variant="h4" gutterBottom >Wellcome</Typography>} 
 				</main>
 			</Grid>
 		</Grid>
+
 	);
 };
