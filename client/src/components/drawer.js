@@ -5,7 +5,7 @@ import TreeView from '@material-ui/lab/TreeView';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import TreeItem from '@material-ui/lab/TreeItem';
-import Typography from '@material-ui/core/Typography';
+import Skeleton from '@material-ui/lab/Skeleton';
 import Drawer from '@material-ui/core/Drawer';
 import Hidden from '@material-ui/core/Hidden';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
@@ -51,12 +51,17 @@ function ResponsiveDrawer(props) {
   const classes = useStyles();
   const theme = useTheme();
 
-
   const [expanded, setExpanded] = React.useState([props.match.params.parent]);
   const [selected, setSelected] = React.useState([props.match.params.id]);
   const { loading, error, data } = useQuery(GET_LIST);
 
-  if (loading) return 'Loading...';
+  if (loading) return <Hidden xsDown>
+                          <Skeleton variant="rect" 
+                                animation="wave"
+                                width={360} 
+                                height={'100vh'} />
+                      </Hidden>
+                      
   if (error) return `Error! ${error.message}`;
 
 
@@ -139,7 +144,6 @@ function ResponsiveDrawer(props) {
             open
           >
             {drawer}
-            
           </Drawer>
         </Hidden>
       </nav>      

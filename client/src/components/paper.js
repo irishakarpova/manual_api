@@ -58,10 +58,12 @@ export default (props) => {
 					{id ? (
 						<React.Fragment>
 							<Typography variant="h4" gutterBottom >
-								{data && !loading  ? data.getItem.title : <Skeleton />} 
+								{data && !loading  ? 
+										 data.getItem.title : <Skeleton width={250}  />} 
 							</Typography>
 							<Typography paragraph gutterBottom>								
-								{data && !loading  ? htmlToReactParser.parse(data.getItem.text) : <Skeleton />}
+								{data && !loading  ? 
+								         htmlToReactParser.parse(data.getItem.text) : <Skeleton width={250} />}
 							</Typography>
 						</React.Fragment> 
 					): <Typography variant="h4" gutterBottom >Wellcome</Typography>} 

@@ -6,7 +6,7 @@ import grey from '@material-ui/core/colors/grey';
 export default createMuiTheme({
 
     palette: {
-      type: 'light',
+        type: "light",
         primary: {
           main: blueGrey[500],
         },
@@ -31,18 +31,36 @@ export default createMuiTheme({
           '&:focus > $content $label':{
             backgroundColor: blueGrey[500],
             color: grey[50],
+            '@media (hover: none)': {
+              background: 'transparent',
+              color: grey[50],
+            },
+
           },
           '&$selected > $content $label': {
             backgroundColor: blueGrey[500],
             color: grey[50],
+            '@media (hover: none)': {
+              backgroundColor: blueGrey[500],
+              color: grey[50],
+            },
+
           },
           '&$selected > $content $label:hover': {
             backgroundColor: grey[50],
             color: blueGrey[800],
+            '@media (hover: none)': {
+              backgroundColor: ' #607d8b !important',
+              color: grey[50],
+            },
           },
           '&$selected:focus > $content $label': {
             backgroundColor: blueGrey[500],
-            color: '#fff'
+            color: '#fff',
+            '@media (hover: none)': {
+              background: 'transparent',
+              color: blueGrey[900],
+            },
           }
         },
         
@@ -70,5 +88,6 @@ export default createMuiTheme({
       },
     },
 });
+
 
 

@@ -46,12 +46,12 @@ export default createMuiTheme({
             color: grey[50],
           },
           '&$selected > $content $label:hover': {
-            backgroundColor: teal[500],
+            backgroundColor: "#009688 !important",
             color: teal[800],
           },
           '&$selected:focus > $content $label': {
             backgroundColor: teal[500],
-            color: '#fff'
+            color: grey[50],
           }
         },
         content:{
