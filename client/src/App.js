@@ -5,8 +5,7 @@ import AppBar from './components/appBar';
 import ResponsiveContent from './components/paper'
 import { BrowserRouter as Router, Switch, Route} from "react-router-dom"
 import { ThemeProvider as MuiThemeProvider } from '@material-ui/core/styles'
-import darkTheme from './themes/darkTheme';
-import lightTheme from './themes/lightTheme';
+import {lightTheme, darkTheme} from './themes/themes';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
@@ -16,13 +15,14 @@ const useStyles = makeStyles((theme) => ({
 ))
 
 function App() {
+
   const classes = useStyles();
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [currentId, setCurrentId] = React.useState(null)
   const [currentTheme, setCurrentTheme] = React.useState(lightTheme)
 
   const chancheTheme = () =>{
-    setCurrentTheme( currentTheme === lightTheme ? darkTheme: lightTheme )
+    setCurrentTheme( currentTheme === lightTheme ? darkTheme : lightTheme )
   }
 
   const handleClick = (id) => {
