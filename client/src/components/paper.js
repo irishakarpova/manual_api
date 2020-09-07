@@ -66,7 +66,7 @@ export default (props) => {
 								         htmlToReactParser.parse(data.getItem.text) : <Skeleton width={250} />}
 							</Typography>
 						</React.Fragment> 
-					): <Typography variant="h4" gutterBottom >Wellcome</Typography>} 
+					): <Typography variant="h4" gutterBottom >Welcome</Typography>} 
 				</main>
 			</Grid>
 		</Grid>
