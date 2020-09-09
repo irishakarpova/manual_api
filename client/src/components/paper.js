@@ -6,6 +6,7 @@ import { Alert, AlertTitle } from '@material-ui/lab';
 import { makeStyles } from '@material-ui/core/styles';
 import { gql, useLazyQuery } from '@apollo/client';
 import {Parser} from 'html-to-react';
+import Greeting from './greeting'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -30,46 +31,48 @@ const GETITEM = gql`
 `;
 
 export default (props) => {
-
+	
 	const classes = useStyles();
-
 	let id = props.id ? props.id : props.match.params.id;
-
+	
 	const [ loadData, { loading, error, data }  ] = useLazyQuery(GETITEM, {
 		variables: { id: id }
 	});
-
 	if ( id && !data && !loading ){
 		loadData();
 	}
 	
-
 	return(
+		<>
+		
 		<Grid container>
 			<Grid item md={8}>
-				<main className={classes.content}>
-					<div className={classes.toolbar} />
-					{error &&(
-						<Alert severity="error">
-							<AlertTitle>Error</AlertTitle>
-							`${error}`
-						</Alert> 
-					)}
-					{id ? (
+				{id ? (
+					<main className={classes.content}>
+						<div className={classes.toolbar} />
+						{error &&(
+							<Alert severity="error">
+								<AlertTitle>Error</AlertTitle>
+								`${error}`
+							</Alert> 
+						)}				
 						<React.Fragment>
 							<Typography variant="h4" gutterBottom >
 								{data && !loading  ? 
-										 data.getItem.title : <Skeleton width={250}  />} 
+									data.getItem.title : <Skeleton width={250}  />} 
 							</Typography>
 							<Typography paragraph gutterBottom>								
 								{data && !loading  ? 
-								         htmlToReactParser.parse(data.getItem.text) : <Skeleton width={250} />}
+									htmlToReactParser.parse(data.getItem.text) : <Skeleton width={250} />}
 							</Typography>
-						</React.Fragment> 
-					): <Typography variant="h4" gutterBottom >Welcome</Typography>} 
-				</main>
+						</React.Fragment>  
+					</main>
+					
+				): <Greeting currentTheme={props.currentTheme}/>}
+
 			</Grid>
 		</Grid>
+		</>
 
 	);
 };

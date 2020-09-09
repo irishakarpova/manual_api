@@ -2,8 +2,7 @@ import { createMuiTheme } from '@material-ui/core/styles';
 import blueGrey from '@material-ui/core/colors/blueGrey';
 import grey from '@material-ui/core/colors/grey';
 import teal from '@material-ui/core/colors/teal';
-import createBreakpoints from '@material-ui/core/styles/createBreakpoints'
-const breakpoints = createBreakpoints({})
+
 
 const getOverides = (theme) => {  
   return {

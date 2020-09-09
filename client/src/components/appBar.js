@@ -7,6 +7,7 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import Switch from '@material-ui/core/Switch';
 
+
 const drawerWidth = 300;
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -31,6 +32,10 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function ButtonAppBar(props) {
+
+  console.log(props)
+
+
   const classes = useStyles();
  
   return (
@@ -46,14 +51,15 @@ export default function ButtonAppBar(props) {
           >
             <MenuIcon />
           </IconButton>
-    
-          <Typography variant="h6"  noWrap className={classes.title}>
-            USER MANUAL
-          </Typography>
+
+          {props.id ? (
+            <Typography variant="h6"  noWrap className={classes.title}>
+              USER MANUAL
+            </Typography>
+          ) : <div className={classes.title}/> }
 
           <Switch
-       
-            onChange={props.chancheTheme}
+            onChange={props.changeTheme}
             name="checkedA"
             inputProps={{ 'aria-label': 'secondary checkbox' }}
           />
