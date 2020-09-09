@@ -2,10 +2,10 @@ import { createMuiTheme } from '@material-ui/core/styles';
 import blueGrey from '@material-ui/core/colors/blueGrey';
 import grey from '@material-ui/core/colors/grey';
 import teal from '@material-ui/core/colors/teal';
+import createBreakpoints from '@material-ui/core/styles/createBreakpoints'
+const breakpoints = createBreakpoints({})
 
-
-const getOverides = (theme) => {
-  
+const getOverides = (theme) => {  
   return {
     ...theme.overrides,
 
@@ -13,33 +13,34 @@ const getOverides = (theme) => {
       root:{
         '&:focus > $content $label':{
           backgroundColor: theme.palette.primary.main,
-          color: grey[50],
+          color: theme.palette.secondary.light,
           '@media (hover: none)': {
             background: 'transparent',
-            color: grey[50],
+            color: theme.palette.secondary.light,
           },
 
         },
         '&$selected > $content $label': {
           backgroundColor: theme.palette.primary.main,
-          color: grey[50],
+          color: theme.palette.secondary.light,
           '@media (hover: none)': {
             backgroundColor: theme.palette.primary.main,
-            color: grey[50],
+            color: theme.palette.secondary.light,
           },
 
         },
         '&$selected > $content $label:hover': {
-          backgroundColor: grey[50],
-          color: blueGrey[800],
+          backgroundColor: theme.palette.secondary.light,
+          color: theme.palette.primary.dark,
           '@media (hover: none)': {
-            backgroundColor: ' #607d8b !important',
-            color: grey[50],
+            backgroundColor:  theme.palette.type === 'light' ? 
+                             '#607d8b !important': '#009688 !important',
+            color: theme.palette.secondary.light,
           },
         },
         '&$selected:focus > $content $label': {
           backgroundColor: theme.palette.primary.main,
-          color: '#fff',
+          color: theme.palette.secondary.light,
           '@media (hover: none)': {
             background: 'transparent',
             color: theme.palette.primary.dark,
@@ -52,13 +53,14 @@ const getOverides = (theme) => {
       },
       label:{
         '&:hover': {
-          backgroundColor: blueGrey[50],
+          backgroundColor: theme.palette.type === 'light' ? 
+                           theme.palette.secondary.main : theme.palette.primary.light,
         },
         padding: 5,
       },
       iconContainer: {
         marginRight: 4,
-        color: blueGrey[500],
+        color: theme.palette.primary.main,
         width: 20,
         display: 'flex',
         flexShrink: 0,
@@ -71,7 +73,6 @@ const getOverides = (theme) => {
   }
 };
 
-
 export const lightTheme = createMuiTheme({
   palette: {
     type: "light",
@@ -82,7 +83,7 @@ export const lightTheme = createMuiTheme({
       contrastText: grey[50],
     },
     secondary: {
-      light: grey[50],
+      light: "#fff",
       main: grey[50],
       dark: grey[100]
     }
@@ -90,6 +91,11 @@ export const lightTheme = createMuiTheme({
   typography: {
     h4:{
       color: blueGrey[700],
+    },
+    h3:{
+      color: blueGrey[700],
+      fontWeight: 'bold',
+      fontSize: '40px',
     },
     body1:{
       color: blueGrey[800],
@@ -106,6 +112,8 @@ export const darkTheme = createMuiTheme({
       },
       secondary: {
         main: grey[100],
+        light: grey[50],
+        dark: grey[500]
       },
       background: {
         paper: '#1a2125',
@@ -125,6 +133,8 @@ export const darkTheme = createMuiTheme({
 
 lightTheme.overrides = getOverides(lightTheme);
 darkTheme.overrides = getOverides(darkTheme);
+
+console.log(3, lightTheme)
 
 
 
