@@ -1,7 +1,7 @@
 
 ### User Manual Template based on GraphQL
 
-<img src="desc.png" width="350" title="description">
+<img src="desc-manual.png" width="350" title="description">
 
 - React
 - Apollo GraphQL
