@@ -34,7 +34,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function ResponsiveDrawer(props) {
-  console.log("data", data)
   const { window} = props;
   const classes = useStyles();
   const theme = useTheme();
@@ -49,10 +48,9 @@ function ResponsiveDrawer(props) {
     setSelected(nodeIds);
   };
 
-
-
   const drawer = (
-    <React.Fragment>        
+    <React.Fragment>   
+        <div className={classes.toolbar} ></div>  
         <TreeView
           defaultCollapseIcon={<ExpandMoreIcon />}
           defaultExpandIcon={<ChevronRightIcon />}
@@ -86,7 +84,6 @@ function ResponsiveDrawer(props) {
            })
           }
         </TreeView>
-
     </React.Fragment>
   );
 
