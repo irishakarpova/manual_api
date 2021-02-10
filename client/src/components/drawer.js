@@ -5,21 +5,10 @@ import TreeView from '@material-ui/lab/TreeView';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import TreeItem from '@material-ui/lab/TreeItem';
-import Skeleton from '@material-ui/lab/Skeleton';
 import Drawer from '@material-ui/core/Drawer';
 import Hidden from '@material-ui/core/Hidden';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
-import { gql, useQuery } from '@apollo/client';
-
-const GET_LIST = gql`
-  query GetList {
-    getList {
-      id
-      title
-      parentId
-    }
-  }
-`;
+import { data } from '../data';
 
 const drawerWidth = 300;
 const useStyles = makeStyles((theme) => ({
@@ -44,27 +33,15 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-
 function ResponsiveDrawer(props) {
-
+  console.log("data", data)
   const { window} = props;
   const classes = useStyles();
   const theme = useTheme();
 
   const [expanded, setExpanded] = React.useState([props.match.params.parent]);
   const [selected, setSelected] = React.useState([props.match.params.id]);
-  const { loading, error, data } = useQuery(GET_LIST);
-
-  if (loading) return <Hidden xsDown>
-                          <Skeleton variant="rect" 
-                                animation="wave"
-                                width={360} 
-                                height={'100vh'} />
-                      </Hidden>
-                      
-  if (error) return `Error! ${error.message}`;
-
-
+  
   const handleToggle = (event, nodeIds) => {
     setExpanded(nodeIds);
   };
@@ -73,10 +50,9 @@ function ResponsiveDrawer(props) {
   };
 
 
+
   const drawer = (
-    <React.Fragment>
-        <div className={classes.toolbar} >
-        </div>
+    <React.Fragment>        
         <TreeView
           defaultCollapseIcon={<ExpandMoreIcon />}
           defaultExpandIcon={<ChevronRightIcon />}
@@ -86,17 +62,17 @@ function ResponsiveDrawer(props) {
           onNodeSelect={handleSelect}
         >
           {
-            data.getList.map( item => {
+            data.map( item => {
               return item.parentId === '0' &&
                 <TreeItem key={item.id} 
                           nodeId={item.id} 
                           label={item.title}>   
                     {
-                      data.getList.map((subItem, subIndex)=>{
+                      data.map((subItem, subIndex)=>{
                         return subItem.parentId === item.id &&
                         <Router key={subItem.id}>
                           <RouterLink style={{ textDecoration: 'none' }}
-                                      to={`/manual/manager/${item.id}/${subItem.id}`}>
+                                      to={`/manual/${item.id}/${subItem.id}`}>
                             <TreeItem key={subIndex}
                                       nodeId={subItem.id} 
                                       label={subItem.title} 
@@ -107,7 +83,7 @@ function ResponsiveDrawer(props) {
                       })
                     }
                 </TreeItem>
-          })
+           })
           }
         </TreeView>
 

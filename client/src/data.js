@@ -1,15 +1,4 @@
-const express = require('express');
-const graphqlHTTP = require('express-graphql');
-const cors = require('cors');
-const { buildSchema } = require('graphql');
-const { readFileSync } = require('fs');
-
-
-const schemaString = readFileSync('./schema.graphql', { encoding: 'utf8' });
-
-const schema = buildSchema(schemaString);
-
-const allItems= [
+export const data = [
 	{
 		id: '0001',
 		title: 'Awesome book1',
@@ -54,29 +43,3 @@ const allItems= [
 	},
 
 ];
-
-const root = {
-	getList: () => {
-		return allItems;
-	},
-	getItem: params => {
-		return allItems.find(({ id }) => params.id === id);
-	},
-};
-
-const app = express();
-
-app.use(cors());
-
-app.use(
-	'/graphql',
-	graphqlHTTP({
-		schema: schema,
-		rootValue: root,
-		graphiql: true
-	})
-);
-
-app.listen(6006);
-
-console.log('Running a GraphQL API server at http://localhost:6006/graphql');
