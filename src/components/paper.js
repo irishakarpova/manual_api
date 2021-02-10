@@ -1,7 +1,6 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
-import Skeleton from '@material-ui/lab/Skeleton';
 import { makeStyles } from '@material-ui/core/styles';
 import {Parser} from 'html-to-react';
 import Greeting from './greeting'
@@ -24,7 +23,7 @@ export default (props) => {
 	const dataById = {};
 
 	data.map(item => {
-	  dataById[item.id] = item;
+	  return dataById[item.id] = item;
 	})
 
 	return(
