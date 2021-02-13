@@ -9,14 +9,13 @@ import { ThemeProvider as MuiThemeProvider } from '@material-ui/core/styles'
 import { lightTheme, darkTheme } from './themes/themes';
 import { makeStyles } from '@material-ui/core/styles';
 
-
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
   }}
 ))
 
-function MainPage(props) {
+function MainPage() {
 
   const history = useHistory();
   const classes = useStyles();
@@ -46,11 +45,19 @@ function MainPage(props) {
       <div className={classes.root}>
         <CssBaseline />
       
-        <AppBar changeTheme ={changeTheme} 
-                handleDrawerToggle={handleDrawerToggle} 
-                id={currentId}  /> 
+
 
         <Router>
+  
+          <Route path='/manual/:parent?/:id?' 
+                 render={(props)=> 
+                  <AppBar 
+                    match={props.match} 
+                    changeTheme ={changeTheme} 
+                    handleDrawerToggle={handleDrawerToggle} 
+                    id={currentId}  /> }>
+          </Route> 
+
           <Switch>
             <Route path='/manual/:parent?/:id?' 
                    render={(props)=> 
@@ -64,7 +71,6 @@ function MainPage(props) {
 
         <Router>
           <Switch>
-
             <Route path='/manual/:parent?/:id?' 
                    render={(props)=> 
                    <ResponsiveContent match={props.match} 

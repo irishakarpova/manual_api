@@ -19,21 +19,23 @@ const htmlToReactParser = new Parser();
   
 export default (props) => {	
 	const classes = useStyles();
-	
+
+	let id = props.id ? props.id : props.match.params.id;
+
 	const dataById = {};
 
 	data.map(item => {
-	  return dataById[item.id] = item;
+	  return dataById[item.id] = item ;
 	})
-
+	
 	return(
 		<Grid container>
 			<Grid item md={8}>
-				{props.id ? (
+				{id ? (
 					<main className={classes.content}>
 						<div className={classes.toolbar} />				
-							<Typography paragraph gutterBottom>							
-								{ htmlToReactParser.parse(dataById[props.id].text) }
+							<Typography variant="body1" color="textSecondary" component="div">							
+								{ htmlToReactParser.parse(dataById[id].text) }
 							</Typography>
 					</main>
 				): <Greeting currentTheme={props.currentTheme}/>}

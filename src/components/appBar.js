@@ -34,6 +34,8 @@ const useStyles = makeStyles((theme) => ({
 export default function ButtonAppBar(props) {
 
   const classes = useStyles();
+
+  let id = props.id ? props.id : props.match.params.id;
  
   return (
     <div className={classes.root}>
@@ -49,12 +51,10 @@ export default function ButtonAppBar(props) {
             <MenuIcon />
           </IconButton>
 
-          {props.id ? (
-            <Typography variant="h6"  noWrap className={classes.title}>
-              USER MANUAL
-            </Typography>
-          ) : <div className={classes.title}/> }
-
+          <Typography variant="h6"  noWrap className={classes.title}>
+            {id ? "USER MANUAL": null}
+          </Typography>
+     
           <Switch
             onChange={props.changeTheme}
             name="checkedA"

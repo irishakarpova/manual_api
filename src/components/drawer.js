@@ -50,7 +50,7 @@ function ResponsiveDrawer(props) {
 
   const drawer = (
     <React.Fragment>   
-        <div className={classes.toolbar} ></div>  
+        <div className={classes.toolbar}></div>  
         <TreeView
           defaultCollapseIcon={<ExpandMoreIcon />}
           defaultExpandIcon={<ChevronRightIcon />}
@@ -75,7 +75,7 @@ function ResponsiveDrawer(props) {
                                       nodeId={subItem.id} 
                                       label={subItem.title} 
                                       onClick={() => {props.handleClick(subItem.id)}}
-                                      />   
+                            />   
                           </RouterLink>  
                         </Router>    
                       })
