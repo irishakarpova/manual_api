@@ -50,7 +50,6 @@ function MainPage() {
     const toDark = currentTheme === lightTheme;
     setCurrentTheme( toDark ? darkTheme : lightTheme )
     setChecked(toDark)
-    console.log("checked", checked)
   }
 
   const handleClick = (id) => {
