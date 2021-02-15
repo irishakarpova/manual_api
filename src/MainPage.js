@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useHistory } from 'react-router-dom'
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Drawer from './components/drawer'
@@ -22,15 +22,35 @@ function MainPage() {
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [currentId, setCurrentId] = React.useState(null)
   const [currentTheme, setCurrentTheme] = React.useState(lightTheme)
+  const [checked, setChecked] = React.useState(false)
 
-  React.useEffect(() => {
+  useEffect(() => {
+    const typeTheme = window.localStorage.getItem('storeIsTheme') 
+    if(typeTheme === 'darkTheme'){
+      setCurrentTheme(darkTheme);
+      setChecked(true)
+    } else{
+      setCurrentTheme(lightTheme)
+    }
+  },[])
+
+  useEffect(() => {
+    window.localStorage.setItem('storeIsTheme', 
+    currentTheme === lightTheme ? "lightTheme" : "darkTheme" )
+  }, [currentTheme])
+
+
+  useEffect(() => {
     history.listen(() => {
       setCurrentId(null);
     });
   });
 
-  const changeTheme = () =>{
-    setCurrentTheme( currentTheme === lightTheme ? darkTheme : lightTheme )
+  const changeTheme = () => {
+    const toDark = currentTheme === lightTheme;
+    setCurrentTheme( toDark ? darkTheme : lightTheme )
+    setChecked(toDark)
+    console.log("checked", checked)
   }
 
   const handleClick = (id) => {
@@ -44,17 +64,14 @@ function MainPage() {
     <MuiThemeProvider theme={currentTheme}>
       <div className={classes.root}>
         <CssBaseline />
-      
-
-
         <Router>
-  
           <Route path='/manual/:parent?/:id?' 
                  render={(props)=> 
                   <AppBar 
-                    match={props.match} 
-                    changeTheme ={changeTheme} 
-                    handleDrawerToggle={handleDrawerToggle} 
+                    match = {props.match} 
+                    changeTheme = {changeTheme} 
+                    checked = {checked}
+                    handleDrawerToggle = {handleDrawerToggle} 
                     id={currentId}  /> }>
           </Route> 
 
