@@ -3,21 +3,14 @@ schema {
 }
 
 type Item {
-    id: ID!
-    title: String!
-    text: String
-    sort: String
-    parentId: ID
+  id: ID!
+  title: String!
+  text: String
+  sort: String
+  parentId: ID
 }
 
 type Query {
-    getList: [Item]!
-    getItem(id: ID!): Item!
+  getList: [Item]!
+  getItem(id: ID!): Item!
 }
-
-
-
-
-
-
-
